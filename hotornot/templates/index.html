@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hot or Not</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Hot or Not 🔥</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="photo" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div class="photo-gallery">
+        {% for photo in photos %}
+        <div class="photo-card">
+            <img src="{{ url_for('static', filename='uploads/' + photo[1]) }}" alt="photo">
+            <form action="/rate/{{ photo[0] }}" method="POST">
+                <input type="number" name="rating" min="1" max="10" required>
+                <button type="submit">Rate</button>
+            </form>
+            <p>Average Rating: {% if photo[3] > 0 %}{{ (photo[2] / photo[3])|round(2) }}{% else %}N/A{% endif %}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="/meetme">Meet Me</a> |
+    <a href="/hotlist">Hotlists</a> |
+    <a href="/announce">Announce Winner</a>
+</body>
+</html>

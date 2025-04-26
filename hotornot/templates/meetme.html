@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meet Me</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Meet Me 🫶</h1>
+    {% if photo %}
+    <img src="{{ url_for('static', filename='uploads/' + photo[1]) }}" alt="photo" style="max-width:300px;">
+    {% else %}
+    <p>No photos yet!</p>
+    {% endif %}
+    <br><br>
+    <a href="/">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotlist</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Top 10 Hotlist 💎</h1>
+    {% for photo in photos %}
+        <div>
+            <img src="{{ url_for('static', filename='uploads/' + photo[1]) }}" alt="photo" style="max-width:200px;">
+            <p>Avg Rating: {{ photo[4]|round(2) }}</p>
+        </div>
+    {% endfor %}
+    <br><br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
